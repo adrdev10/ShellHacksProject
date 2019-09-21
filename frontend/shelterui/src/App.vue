@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <HelloWorld/>
+    <LandingPage></LandingPage>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import LandingPage from './components/LandingPage'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    LandingPage,
   }
 }
 </script>
@@ -20,8 +20,10 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  position: absolute;
   color: #2c3e50;
-  margin-top: 60px;
+  background-color: #3a3986;
+  height: 100%;
+  width: 100%;
 }
 </style>
