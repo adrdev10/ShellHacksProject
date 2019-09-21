@@ -8,6 +8,7 @@ import VueRouter from 'vue-router'
 import DashBoard from './components/DashBoard.vue'
 import LandingPage from './components/LandingPage.vue'
 
+
 Vue.use(BootstrapVue)
 Vue.use(VueRouter)
 
