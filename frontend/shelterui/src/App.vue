@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <LandingPage></LandingPage>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import LandingPage from './components/LandingPage'
+import DashBoard from './components/DashBoard'
 
 export default {
   name: 'app',
   components: {
     LandingPage,
+    DashBoard,
   }
 }
 </script>
