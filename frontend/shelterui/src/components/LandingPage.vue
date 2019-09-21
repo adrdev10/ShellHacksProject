@@ -2,11 +2,10 @@
   <div class="hello">
     <h2 id="title">Welcome Back!</h2>
     <div class="form1">
-      <b-form v-on:submit="onSubmit" v-on:reset="onReset">
+      <b-form v-on:submit="onSubmit">
         <b-form-group id="input-group-1" label="Email address:" label-for="input-1">
           <b-form-input
             id="input-1"
-            v-model="form.email"
             type="email"
             required
             placeholder="Enter email"
@@ -16,7 +15,6 @@
         <b-form-group id="input-group-2" label="Password" label-for="input-2">
           <b-form-input
             id="input-2"
-            v-model="form.password"
             type="password"
             required
             placeholder="Enter Password"
@@ -25,7 +23,7 @@
 
         <div id="submit-button">
           <p><a href="">Forgot Password?</a></p>
-           <b-button type="reset" variant="danger">Sign In</b-button>
+           <b-button type="signin" variant="danger">Sign In</b-button>
         </div>
       </b-form>
     </div>
@@ -48,6 +46,18 @@ export default {
       evt.preventDefault();
       let userData = JSON.stringify(this.form);
       console.log(userData);
+      fetch("http://localhost:8080", {
+        body: userData,
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((res) => {
+        if (!res.ok) {
+          console.log("Could not process post request. Body sent: ", res.bodyUsed, res.status);
+          this.$router.push('/dashboard');
+        }
+      })
     },
   }
 };
