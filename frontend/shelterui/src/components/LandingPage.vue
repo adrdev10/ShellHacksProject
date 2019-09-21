@@ -55,7 +55,7 @@ export default {
       }).then((res) => {
         if (!res.ok) {
           console.log("Could not process post request. Body sent: ", res.bodyUsed, res.status);
-          this.$router.push('/dashboard');
+          this.$router.push({name:'dashboard', params:{"usersignedin": userData}});
         }
       })
     },
