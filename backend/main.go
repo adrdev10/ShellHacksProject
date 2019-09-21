@@ -1,21 +1,46 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"io/ioutil"
+	"log"
+    "net/http"
+)
+
+type Page struct {
+	Title string
+	Body  []byte
+}
+
+func (p *Page) save() error {
+	filename := p.Title + ".txt"
+	return ioutil.WriteFile(filename, p.Body, 0600)
+}
+
+func loadPage(title string) (*Page, error) {
+	filename := title + ".txt"
+	body, err := ioutil.ReadFile(filename)
+	if err != nil {
+		return nil, err
+	}
+	return &Page{Title: title, Body: body}, nil
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+    fmt.Fprintf(w, "Hi there, I love %s!", r.URL.Path[1:])
+}
+
 
 func main() {
-	fmt.Println("Hello, World")
-	a:= print()
-	fmt.Println(a)
-
-	count := 10
-	for index := 0; index < count; index++ {
-		fmt.Println(index)
-	}
-
-
-	fmt.Println(a)
+	http.HandleFunc("/", handler)
+    log.Fatal(http.ListenAndServe(":8080", nil))
+	p1 := &Page{Title: "TestPage", Body: []byte("This is a sample Page.")}
+	p1.save()
+	p2, _ := loadPage("TestPage")
+	fmt.Println(string(p2.Body))
 }
 
-func print()(string){
-	return "Hello Alex"
-}
+
+// func print()(string){
+// 	return "Hello Alex"
+// }
