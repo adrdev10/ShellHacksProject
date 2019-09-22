@@ -28,35 +28,35 @@ app.post('/postCall', (req, res) => {
         })
         req.on("end", () => {
             parse(body);
-            console.log(body);
+            console.log("body is:" + body);
+            if (body == 10) {
+                client.messages
+                .create({
+                body: 'Max Capacity Reached. Please choose another shelter',
+                from: '+12563635545',
+                to: '+17547154916',
+                },(error, item) =>{
+                    if (error) {
+                        console.log(error);
+                    }
+                })
+                .then(message => console.log(message.sid));
+            }else {
+                console.log("Body is" +body)
+                client.messages
+                .create({
+                body: 'Current Capacity is '+ body + " out of 10",
+                from: '+12563635545',
+                to: '+17547154916',
+                },(error, item) =>{
+                    if (error) {
+                        console.log(error);
+                    }
+                })
+                .then(message => console.log(message.sid));
+            }
             res.end(body['capacity']++);
         })
-        let cap = body['capacity'];
-        if (cap == 10) {
-            client.messages
-            .create({
-            body: 'Max Capacity Reached. Please choose another shelter',
-            from: '+12563635545',
-            to: '+17547154916',
-            },(error, item) =>{
-                if (error) {
-                    console.log(error);
-                }
-            })
-            .then(message => console.log(message.sid));
-        }else {
-            client.messages
-            .create({
-            body: 'Current Capacity is '+ cap,
-            from: '+12563635545',
-            to: '+17547154916',
-            },(error, item) =>{
-                if (error) {
-                    console.log(error);
-                }
-            })
-            .then(message => console.log(message.sid));s
-        }
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
