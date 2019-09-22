@@ -25,7 +25,7 @@ export default {
   name: 'app',
   components: {
     LandingPage,
-    DashBoard,
+	DashBoard
   }
 }
 </script>
