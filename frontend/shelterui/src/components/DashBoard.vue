@@ -46,7 +46,9 @@
               <div>
                 <ul class="shelterUL">
                   <li v-bind:key="type" v-for="inf in info">
-                    {{ inf.name }} {{inf.zip}} {{inf.capacity}}
+                    Name: {{ inf.name }} | Zip: {{inf.zip}} | Capacity: {{inf.capacity}}
+                    | Longitude: {{inf.longitude}}
+                    | Latitude: {{inf.latitude}}
                   </li>
                 </ul>
               </div>
@@ -60,7 +62,7 @@
           <gmap-marker
             :key="index"
             v-for="(m, index) in markers"
-			v-on:click="markerClickHandler"
+			      v-on:click="markerClickHandler"
             :position="m.position"
           ></gmap-marker>
         </gmap-map>
@@ -72,6 +74,9 @@
 <script>
 import states from "./shelterData.json";
 
+var longitude = 0;
+var latitude = 0;
+
 export default {
   name: "DashBoard",
   props: {
@@ -82,8 +87,8 @@ export default {
   computed: {
     info() {
       return states.shelters.map((item) => {
-        return item;
-      })
+      return item;
+      });
     }
   },
   data() {
@@ -140,14 +145,18 @@ export default {
 	},
 	
 	markerClickHandler: function(event) {
-		console.log(event.latLng + "")
+    console.log(event.latLng + "")
 		Object.keys(event).push({address: "Shelter 1"})
 		console.log("shelter got clicked: " + event)
 		console.log("shelter got clicked: " + Object.keys(event))
 		console.log("xa    : " + event.xa)
 		console.log("pixel: " + event.pixel)
-		console.log("ua: " + event.ua)
+    console.log("ua: " + event.ua)
 
+    longitude = event.latLng.lng();
+    latitude = event.latLng.lat();
+    console.log(longitude)
+    console.log(latitude)
 	},
 
     setPlace(place) {
