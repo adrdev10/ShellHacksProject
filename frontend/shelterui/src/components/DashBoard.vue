@@ -3,7 +3,7 @@
     <div id="left-side">
       <div>
         <img src alt />
-        <h3>{props.name}</h3>
+        <h3>{{username}}</h3>
       </div>
     </div>
     <div id="right-side">
@@ -74,6 +74,7 @@ export default {
           lng: position.coords.longitude
         };
         this.markers.push({ position: this.center });
+        this.markers.push({ position: {lat: 48.160910, lng: 16.383330}});
       });
     }
   }
