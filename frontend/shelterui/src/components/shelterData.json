@@ -1,0 +1,8 @@
+{
+    "shelters": [
+        {"name": "relief1", "address1": "1234 Stone Dr", "city": "Miami", "zip": "33174"},
+        {"name": "relief2", "address1": "1234 Stone Dr", "city": "Miami", "zip": "33174"},
+        {"name": "relief3", "address1": "1234 Stone Dr", "city": "Miami", "zip": "33174"},
+        {"name": "relief4", "address1": "1234 Stone Dr", "city": "Miami", "zip": "33174"}
+    ]
+}

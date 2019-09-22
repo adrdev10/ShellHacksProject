@@ -19,22 +19,14 @@
                 </b-navbar-nav>
                 </div>
 
-                <div style="margin-left: 10px;">
-                  <b-navbar-nav class="ml-auto">
-                      <template>
-                      <div>
-                        <b-form-select v-model="selected" :options="options" size="sm" class="ml-auto"></b-form-select>
-                      </div>
-                      </template>
-                  </b-navbar-nav>
-                </div>
+
                 <!-- Right aligned nav items -->
                   <b-navbar-nav class="ml-auto">
 
                     <b-nav-item-dropdown right>
                     <!-- Using 'button-content' slot -->
                     <template v-slot:button-content>
-                        <em>User</em>
+                        <em>{{ usersignedin }}</em>
                     </template>
                     <b-dropdown-item href="#">Profile</b-dropdown-item>
                     <b-dropdown-item href="#">Sign Out</b-dropdown-item>
@@ -47,7 +39,20 @@
       <div>
         <img src alt />
         <h3>{{usersignedin}}</h3>
-      </div>
+      </div>  
+        <div style="margin-left: 10px;">
+          <b-navbar-nav class="ml-auto">
+              <template>
+              <div>
+                <ul class="shelterUL">
+                  <li v-for="name in names">
+                    {{ name }}
+                  </li>
+                </ul>
+              </div>
+              </template>
+          </b-navbar-nav>
+        </div>
     </div>
     <div id="right-side">
       <div>
@@ -64,10 +69,19 @@
 </template>
 
 <script>
+import states from "./shelterData.json";
+
 export default {
   name: "DashBoard",
   props: {
 	  usersignedin: Object
+  },
+  computed: {
+    names() {
+      return states.shelters.map((item) => {
+        return item.name;
+      })
+    }
   },
   data() {
     return{
@@ -83,6 +97,7 @@ export default {
           { value: { C: '3PO' }, text: 'This is an option with object value' },
           { value: 'd', text: 'This one is disabled', disabled: true }
         ]
+        
     }
   },
   mounted() {
