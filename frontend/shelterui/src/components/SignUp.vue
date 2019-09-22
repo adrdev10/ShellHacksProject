@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h2 id="title">Welcome Back!</h2>
+    <h2 id="title">Welcome Back! Sign up</h2>
     <div class="form1">
       <b-form v-on:submit="onSubmit" v-on:reset="onReset">
         <b-form-group id="input-group-1" label="Email address:" label-for="input-1">

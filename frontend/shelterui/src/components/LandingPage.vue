@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h2 id="title">Welcome Back!</h2>
+    <h2 id="title">Welcome Back! Landing</h2>
     <div class="form1">
       <b-form v-on:submit="onSubmit">
         <b-form-group id="input-group-1" label="Email address:" label-for="input-1">
@@ -8,6 +8,7 @@
             id="input-1"
             type="email"
             required
+			v-model="form.email"
             placeholder="Enter email"
           ></b-form-input>
         </b-form-group>
@@ -17,6 +18,7 @@
             id="input-2"
             type="password"
             required
+			v-model="form.password"
             placeholder="Enter Password"
           ></b-form-input>
         </b-form-group>
@@ -45,7 +47,7 @@ export default {
     onSubmit(evt) {
       evt.preventDefault();
       let userData = JSON.stringify(this.form);
-      console.log(userData);
+      //console.log("userData: " + userData);
       fetch("http://localhost:8080", {
         body: userData,
         method: "post",
@@ -54,7 +56,8 @@ export default {
         },
       }).then((res) => {
         if (!res.ok) {
-          console.log("Could not process post request. Body sent: ", res.bodyUsed, res.status);
+		  console.log("Could not process post request. Body sent: ", res.bodyUsed, res.status);
+		//   console.log("userData: " + userData);
           this.$router.push({name:'dashboard', params:{"usersignedin": userData}});
         }
       })

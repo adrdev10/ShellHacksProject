@@ -46,7 +46,7 @@
     <div id="left-side">
       <div>
         <img src alt />
-        <h3>{{username}}</h3>
+        <h3>{{usersignedin}}</h3>
       </div>
     </div>
     <div id="right-side">
@@ -66,6 +66,9 @@
 <script>
 export default {
   name: "DashBoard",
+  props: {
+	  usersignedin: Object
+  },
   data() {
     return{
       center: { lat: 45.508, lng: -73.587 },
