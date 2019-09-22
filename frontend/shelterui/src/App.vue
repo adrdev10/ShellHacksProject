@@ -7,6 +7,7 @@
 <script>
 import LandingPage from './components/LandingPage'
 import DashBoard from './components/DashBoard'
+import SelectionBox from './components/DashBoard'
 
   // var firebaseConfig = {
   //   apiKey: "AIzaSyBBVkvi3AwU4dLPC8X2NqYnFILGYhtCxcw",
