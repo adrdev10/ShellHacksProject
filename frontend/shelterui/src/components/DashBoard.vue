@@ -26,10 +26,6 @@
                     <b-nav-item-dropdown right>
                     <!-- Using 'button-content' slot -->
                     <template v-slot:button-content>
-<<<<<<< HEAD
-                        <em>{{ usersignedin }}</em>
-=======
->>>>>>> e88756d23d7416b6232f789c0ed1d6376ebd96fb
                         <em>{{usersignedin}}</em>
                     </template>
                     <b-dropdown-item href="#">Profile</b-dropdown-item>
@@ -49,8 +45,8 @@
               <template>
               <div>
                 <ul class="shelterUL">
-                  <li v-for="name in names">
-                    {{ name }}
+                  <li v-for="inf in info">
+                    {{ inf.name }} {{inf.zip}} {{inf.capacity}}
                   </li>
                 </ul>
               </div>
@@ -78,17 +74,16 @@ import states from "./shelterData.json";
 export default {
   name: "DashBoard",
   props: {
-	  usersignedin: String
-<<<<<<< HEAD
+    usersignedin: String,
+    numberpeople: String,
+    zip: String
   },
   computed: {
-    names() {
+    info() {
       return states.shelters.map((item) => {
-        return item.name;
+        return item;
       })
     }
-=======
->>>>>>> e88756d23d7416b6232f789c0ed1d6376ebd96fb
   },
   data() {
     return{
@@ -107,6 +102,7 @@ export default {
         
     }
   },
+
   mounted() {
     let fakeData = {
       data: [25.738426,-80.36898, 25.744611, -80.344279],
@@ -119,9 +115,7 @@ export default {
 
   created() {
     this.geolocate();
-  },
-
-    
+  }, 
   methods:{
      addMarker(lat, lon) {
       if (this.currentPlace) {
@@ -179,7 +173,21 @@ export default {
 #app {
   background-color: white !important;
 }
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+
+}
+
+.shelterUL li{
+  padding: 25px;
+  font: 100px;
+  list-style-type: none;
+  list-style-position: inherit;
+  border: 1px solid black;
+  margin-top: 1px;
+}
 </style>
-
-
 

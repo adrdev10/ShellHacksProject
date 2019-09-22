@@ -1,8 +1,8 @@
 {
     "shelters": [
-        {"name": "relief1", "address1": "1234 Stone Dr", "city": "Miami", "zip": "33174"},
-        {"name": "relief2", "address1": "1234 Stone Dr", "city": "Miami", "zip": "33174"},
-        {"name": "relief3", "address1": "1234 Stone Dr", "city": "Miami", "zip": "33174"},
-        {"name": "relief4", "address1": "1234 Stone Dr", "city": "Miami", "zip": "33174"}
+        {"name": "relief1", "longitude": "1234 Stone Dr", "latitude": "Miami", "zip": "33175", "capacity": "100", "phone": "+12563635545"},
+        {"name": "relief2", "longitude": "1234 Stone Dr", "latitude": "Miami", "zip": "33174", "capacity": "80", "phone": "+12563635545"}, 
+        {"name": "relief3", "longitude": "1234 Stone Dr", "latitude": "Miami", "zip": "33174", "capacity": "60", "phone": "+12563635545"},
+        {"name": "relief4", "longitude": "1234 Stone Dr", "latitude": "Miami", "zip": "33176", "capacity": "150", "phone": "+12563635545"}
     ]
 }
