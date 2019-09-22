@@ -45,7 +45,7 @@
               <template>
               <div>
                 <ul class="shelterUL">
-                  <li v-for="inf in info">
+                  <li v-bind:key="type" v-for="inf in info">
                     {{ inf.name }} {{inf.zip}} {{inf.capacity}}
                   </li>
                 </ul>
@@ -141,7 +141,6 @@ export default {
           lng: position.coords.longitude
         };
         this.markers.push({ position: this.center });
-        this.markers.push({ position: {lat: 48.160910, lng: 16.383330}});
       });
     }
   }
@@ -190,4 +189,3 @@ ul {
   margin-top: 1px;
 }
 </style>
-

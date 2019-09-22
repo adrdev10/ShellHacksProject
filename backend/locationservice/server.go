@@ -1,0 +1,3 @@
+package locationservice
+
+func Server()
