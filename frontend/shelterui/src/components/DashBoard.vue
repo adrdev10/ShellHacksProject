@@ -26,7 +26,10 @@
                     <b-nav-item-dropdown right>
                     <!-- Using 'button-content' slot -->
                     <template v-slot:button-content>
+<<<<<<< HEAD
                         <em>{{ usersignedin }}</em>
+=======
+>>>>>>> e88756d23d7416b6232f789c0ed1d6376ebd96fb
                         <em>{{usersignedin}}</em>
                     </template>
                     <b-dropdown-item href="#">Profile</b-dropdown-item>
@@ -76,6 +79,7 @@ export default {
   name: "DashBoard",
   props: {
 	  usersignedin: String
+<<<<<<< HEAD
   },
   computed: {
     names() {
@@ -83,6 +87,8 @@ export default {
         return item.name;
       })
     }
+=======
+>>>>>>> e88756d23d7416b6232f789c0ed1d6376ebd96fb
   },
   data() {
     return{
