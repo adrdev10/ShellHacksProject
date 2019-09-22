@@ -27,6 +27,7 @@
                     <!-- Using 'button-content' slot -->
                     <template v-slot:button-content>
                         <em>{{ usersignedin }}</em>
+                        <em>{{usersignedin}}</em>
                     </template>
                     <b-dropdown-item href="#">Profile</b-dropdown-item>
                     <b-dropdown-item href="#">Sign Out</b-dropdown-item>
@@ -74,7 +75,7 @@ import states from "./shelterData.json";
 export default {
   name: "DashBoard",
   props: {
-	  usersignedin: Object
+	  usersignedin: String
   },
   computed: {
     names() {
