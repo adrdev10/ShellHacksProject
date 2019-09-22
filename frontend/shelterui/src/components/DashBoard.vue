@@ -55,6 +55,7 @@
           <gmap-marker
             :key="index"
             v-for="(m, index) in markers"
+			v-on:click="markerClickHandler"
             :position="m.position"
           ></gmap-marker>
         </gmap-map>
@@ -72,8 +73,16 @@ export default {
   data() {
     return{
       center: { lat: 45.508, lng: -73.587 },
-      markers: [],
-      places: [],
+	  places: [],
+	  markers: [
+		  { position: {lat: 30.607481, lng: -86.515763}, address: "", name: "Shelter 1"},
+		  { position: {lat: 30.076522, lng: -81.749945}, address: "", name: "Shelter 2"},
+		  { position: {lat: 28.447261, lng: -81.398536}, address: "", name: "Shelter 3"},
+		  { position: {lat: 25.787836, lng: -80.256457}, address: "", name: "Shelter 4"},
+		  { position: {lat: 27.305359, lng: -80.352243}, address: "", name: "Shelter 5"},
+		  { position: {lat: 30.395532, lng: -84.271367}, address: "", name: "Shelter 6"},
+		  { position: {lat: 27.956539, lng: -82.478864}, address: "", name: "Shelter 7"}
+	  ],
       currentPlace: null,
       selected: null,
         options: [
@@ -98,7 +107,6 @@ export default {
   created() {
     this.geolocate();
   },
-
     
   methods:{
      addMarker(lat, lon) {
@@ -112,20 +120,38 @@ export default {
         this.center = marker;
         this.currentPlace = null;
       }
-    },
+	},
+	
+	markerClickHandler: function(event) {
+		console.log(event.latLng + "")
+		Object.keys(event).push({address: "Shelter 1"})
+		console.log("shelter got clicked: " + event)
+		console.log("shelter got clicked: " + Object.keys(event))
+		console.log("xa    : " + event.xa)
+		console.log("pixel: " + event.pixel)
+		console.log("ua: " + event.ua)
+
+	},
 
     setPlace(place) {
       this.currentPlace = place;
     },
 
-     geolocate: function() {
+    geolocate: function() {
       navigator.geolocation.getCurrentPosition(position => {
         this.center = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
         this.markers.push({ position: this.center });
-        this.markers.push({ position: {lat: 48.160910, lng: 16.383330}});
+        // this.markers.push({ position: {lat: 30.607481, lng: -86.515763}});
+        // this.markers.push({ position: {lat: 30.076522, lng: -81.749945}});
+        // this.markers.push({ position: {lat: 28.447261, lng: -81.398536}});
+        // this.markers.push({ position: {lat: 25.787836, lng: -80.256457}});
+        // this.markers.push({ position: {lat: 27.305359, lng: -80.352243}});
+        // this.markers.push({ position: {lat: 30.395532, lng: -84.271367}});
+		// this.markers.push({ position: {lat: 27.956539, lng: -82.478864}});
+		this.markers.push();
       });
     }
   }
