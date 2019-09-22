@@ -36,10 +36,12 @@
               <template>
               <div>
                 <ul class="shelterUL">
-                  <li v-bind:key="type" v-for="inf in info">
+                  <li v-for="inf in info" v-bind:key="inf">
                     Name: {{ inf.name }} | Zip: {{inf.zip}} | Capacity: {{inf.capacity}}
                     <br> Longitude: {{inf.longitude}}
                     | Latitude: {{inf.latitude}}
+					<br>
+				    <button v-on:click="joinShelter()">Join Shelter</button>
                   </li>
                   <button v-on:click="decresedToZero()">Get Message</button>
                 </ul>
@@ -196,7 +198,10 @@ export default {
 		this.markers.push({ position: {lat: 27.956539, lng: -82.478864}});
 		this.markers.push();
       });
-    }
+	}, 
+	joinShelter: function() {
+		 
+	}
   }
 };
 </script>
