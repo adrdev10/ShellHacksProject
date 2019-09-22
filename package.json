@@ -1,0 +1,23 @@
+{
+  "name": "ShellHacksProject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xdragon1015/ShellHacksProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xdragon1015/ShellHacksProject/issues"
+  },
+  "homepage": "https://github.com/xdragon1015/ShellHacksProject#readme",
+  "dependencies": {
+    "npm": "^6.11.3"
+  }
+}
