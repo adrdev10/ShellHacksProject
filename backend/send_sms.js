@@ -9,19 +9,27 @@ const port = 3000
 //Do not touch this.
 const client = require('twilio')(accountSid, authToken);
 
+var environmentRoot =  require('path').normalize(__dirname );
+
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+ });
+ 
+ app.use(express.static(environmentRoot + '/public'));
+
 app.post('/postCall', (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    if (req.method == "post") {
         let body = "";
         req.on("data", (chunck) => {
             body += chunck;
-            
         })
         req.on("end", () => {
             parse(body);
             console.log(body);
-            res.end(["ok"]);
+            res.end(body['capacity']++);
         })
         let cap = body['capacity'];
         if (cap == 10) {
@@ -35,7 +43,7 @@ app.post('/postCall', (req, res) => {
                     console.log(error);
                 }
             })
-            .then(message => console.log(message.sid));s
+            .then(message => console.log(message.sid));
         }else {
             client.messages
             .create({
@@ -49,7 +57,6 @@ app.post('/postCall', (req, res) => {
             })
             .then(message => console.log(message.sid));s
         }
-    }
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
