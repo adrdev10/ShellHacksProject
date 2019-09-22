@@ -21,13 +21,7 @@
           <!--Testing decresed property -->
           <button v-on:click="decresedToZero()">Hello World</button>
 
-          <div style="margin-left: 10px;">
-            <b-navbar-nav class="ml-auto">
-              <template>
-                <div>
-                  <b-form-select v-model="selected" :options="options" size="sm" class="ml-auto"></b-form-select>
-                </div>
-              </template>
+ 
 
                 <!-- Right aligned nav items -->
                   <b-navbar-nav class="ml-auto">
@@ -121,14 +115,6 @@ export default {
 		  { position: {lat: 27.956539, lng: -82.478864}, address: "", name: "Shelter 7"}
 	  ],
       currentPlace: null,
-      selected: null,
-        options: [
-          { value: null, text: 'Please select the closet shelter' },
-          { value: 'a', text: 'This is First option' },
-          { value: 'b', text: 'Selected Option' },
-          { value: { C: '3PO' }, text: 'This is an option with object value' },
-          { value: 'd', text: 'This one is disabled', disabled: true }
-        ],
       user: {
         selectedShelter: [{}]
       },
