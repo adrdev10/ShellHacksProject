@@ -1,5 +1,48 @@
 <template>
   <div id="dashboard">
+    <div class="navigation" id="myTopnav">
+        <b-navbar toggleable="lg" type="dark" variant="info">
+            <b-navbar-brand href="#">HURRICANE RELIEF</b-navbar-brand>
+
+            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+            <b-collapse id="nav-collapse" is-nav>
+
+                <div style="margin-left: 0;">
+                <b-navbar-nav>
+                   <b-navbar-nav class="ml-auto">
+                    <b-nav-form class="ml-auto">
+                      <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
+                      <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
+                    </b-nav-form>
+                  </b-navbar-nav>
+                </b-navbar-nav>
+                </div>
+
+                <div style="margin-left: 10px;">
+                  <b-navbar-nav class="ml-auto">
+                      <template>
+                      <div>
+                        <b-form-select v-model="selected" :options="options" size="sm" class="ml-auto"></b-form-select>
+                      </div>
+                      </template>
+                  </b-navbar-nav>
+                </div>
+                <!-- Right aligned nav items -->
+                  <b-navbar-nav class="ml-auto">
+
+                    <b-nav-item-dropdown right>
+                    <!-- Using 'button-content' slot -->
+                    <template v-slot:button-content>
+                        <em>User</em>
+                    </template>
+                    <b-dropdown-item href="#">Profile</b-dropdown-item>
+                    <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+                    </b-nav-item-dropdown>
+                </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
+    </div>  
     <div id="left-side">
       <div>
         <img src alt />
@@ -20,9 +63,6 @@
 </template>
 
 <script>
-
-
-
 export default {
   name: "DashBoard",
   props: {
@@ -33,7 +73,15 @@ export default {
       center: { lat: 45.508, lng: -73.587 },
       markers: [],
       places: [],
-      currentPlace: null
+      currentPlace: null,
+      selected: null,
+        options: [
+          { value: null, text: 'Please select the closet shelter' },
+          { value: 'a', text: 'This is First option' },
+          { value: 'b', text: 'Selected Option' },
+          { value: { C: '3PO' }, text: 'This is an option with object value' },
+          { value: 'd', text: 'This one is disabled', disabled: true }
+        ]
     }
   },
   mounted() {
