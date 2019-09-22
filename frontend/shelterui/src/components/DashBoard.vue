@@ -77,7 +77,7 @@ export default {
       currentPlace: null,
       selected: null,
         options: [
-          { value: null, text: 'Please select an option' },
+          { value: null, text: 'Please select the closet shelter' },
           { value: 'a', text: 'This is First option' },
           { value: 'b', text: 'Selected Option' },
           { value: { C: '3PO' }, text: 'This is an option with object value' },
