@@ -95,36 +95,13 @@ export default {
   watch: {
     capacity: function(newVal, oldVal) {
       console.log(newVal);
-      const client = require("twilio")(AccountSID, keyAPI);
-      if (this.capacity == 10) {
-        client.messages.create({
-          body: "Maximun Capicity Reached." + "We will redirect you to another shelter",
-          from: pn, 
-          to: mn,
-        });
-        let newLocation = this.markers.map(() => {
-            //Implemet later
-        })
-      } else {
-        client.messages
-          .create(
-            {
-              body: "Current Capacity is " + this.capacity,
-              from: pn,
-              to: mn
-            },
-            (mi, error) => {
-              if (error) {
-                client.messages.create({
-                  body: "Failed to send message. Try again later",
-                  from: pn,
-                  to: mn
-                });
-              }
-            }
-          )
-          .then(message => console.log(message.sid));
-      }
+      fetch("http://localhost:3000/getCalls", {
+        method:'get',
+      }).then((res, err) => {
+        if (err) {
+          console.log("Problem with server")
+        }
+      })
     }
   },
 
