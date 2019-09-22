@@ -30,10 +30,7 @@
             </b-collapse>
         </b-navbar>
     </div>  
-    <div id="left-side">
-      <div>
-        <h3>{{usersignedin}}</h3>
-      </div>  
+    <div id="left-side"> 
         <div>
           <b-navbar-nav class="ml-auto">
               <template>
