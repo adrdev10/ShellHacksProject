@@ -17,20 +17,12 @@
               </b-navbar-nav>
             </b-navbar-nav>
           </div>
-
-          <!--Testing decresed property -->
-          <button v-on:click="decresedToZero()">Hello World</button>
-
- 
-
+          
                 <!-- Right aligned nav items -->
                   <b-navbar-nav class="ml-auto">
 
                     <b-nav-item-dropdown right>
                     <!-- Using 'button-content' slot -->
-                    <template v-slot:button-content>
-                        <em>{{usersignedin}}</em>
-                    </template>
                     <b-dropdown-item href="#">Profile</b-dropdown-item>
                     <b-dropdown-item href="#">Sign Out</b-dropdown-item>
                     </b-nav-item-dropdown>
@@ -40,17 +32,16 @@
     </div>  
     <div id="left-side">
       <div>
-        <img src alt />
         <h3>{{usersignedin}}</h3>
       </div>  
-        <div style="margin-left: 10px;">
+        <div>
           <b-navbar-nav class="ml-auto">
               <template>
               <div>
                 <ul class="shelterUL">
                   <li v-bind:key="type" v-for="inf in info">
                     Name: {{ inf.name }} | Zip: {{inf.zip}} | Capacity: {{inf.capacity}}
-                    | Longitude: {{inf.longitude}}
+                    <br> Longitude: {{inf.longitude}}
                     | Latitude: {{inf.latitude}}
                   </li>
                 </ul>
@@ -225,13 +216,13 @@ export default {
   float: left;
   text-align: left;
   overflow: auto;
-  margin: auto;
+  margin-right: 0px;
   width: 35%;
 }
 #right-side {
   flex-grow: 4;
   float: right;
-  margin: auto;
+  margin: 0px;
   text-align: right;
   width: 65%;
 }
