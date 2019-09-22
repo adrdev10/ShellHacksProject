@@ -23,6 +23,15 @@
           ></b-form-input>
         </b-form-group>
 
+		<b-form-group id="input-group-3" label="I am a..." label-for="input-3">
+		  <b-form-select
+			id="input-3"
+			:options="accountType"
+			v-model="form.accountType"
+			required
+		  ></b-form-select>
+      	</b-form-group>
+
         <div id="submit-button">
           <p><a href="">Forgot Password?</a></p>
            <b-button type="signin" variant="danger">Sign In</b-button>
@@ -39,15 +48,18 @@ export default {
     return {
       form: {
         email: "",
-        password: ""
-      }
+		password: "",
+		accountType: null
+	  },
+	  accountType: [{ text: 'Select One', value: null }, 'Person', 'Shelter'],
+	    show: true
     };
   },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
       let userData = JSON.stringify(this.form);
-      //console.log("userData: " + userData);
+      console.log("userData: " + userData);
       fetch("http://localhost:8080", {
         body: userData,
         method: "post",
