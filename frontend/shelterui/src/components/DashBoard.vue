@@ -17,37 +17,37 @@
               </b-navbar-nav>
             </b-navbar-nav>
           </div>
+          
+                <!-- Right aligned nav items -->
+                  <b-navbar-nav class="ml-auto">
 
-          <!--Testing decresed property -->
-          <button v-on:click="decresedToZero()">Hello World</button>
-
-          <div style="margin-left: 10px;">
-            <b-navbar-nav class="ml-auto">
-              <template>
-                <div>
-                  <b-form-select v-model="selected" :options="options" size="sm" class="ml-auto"></b-form-select>
-                </div>
-              </template>
-            </b-navbar-nav>
-          </div>
-          <!-- Right aligned nav items -->
+                    <b-nav-item-dropdown right>
+                    <!-- Using 'button-content' slot -->
+                    <b-dropdown-item href="#">Profile</b-dropdown-item>
+                    <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+                    </b-nav-item-dropdown>
+                </b-navbar-nav>
+            </b-collapse>
+        </b-navbar>
+    </div>  
+    <div id="left-side"> 
+        <div>
           <b-navbar-nav class="ml-auto">
-            <b-nav-item-dropdown right>
-              <!-- Using 'button-content' slot -->
-              <template v-slot:button-content>
-                <em>User</em>
+              <template>
+              <div>
+                <ul class="shelterUL">
+                  <li v-for="inf in info" v-bind:key="inf">
+                    Name: {{ inf.name }} | Zip: {{inf.zip}} | Capacity: {{inf.capacity}}
+                    <br> Longitude: {{inf.longitude}}
+                    | Latitude: {{inf.latitude}}
+					<br>
+				    <button v-on:click="joinShelter()">Join Shelter</button>
+                  </li>
+                </ul>
+              </div>
               </template>
-              <b-dropdown-item href="#">Profile</b-dropdown-item>
-              <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-            </b-nav-item-dropdown>
           </b-navbar-nav>
-        </b-collapse>
-      </b-navbar>
-    </div>
-    <div id="left-side">
-      <div>
-        <img src alt />
-      </div>
+        </div>
     </div>
     <div id="right-side">
       <div>
@@ -55,9 +55,10 @@
           <gmap-marker
             :key="index"
             v-for="(m, index) in markers"
-			v-on:click="markerClickHandler"
+			      v-on:click="markerClickHandler"
             :position="m.position"
           ></gmap-marker>
+          <gmap-marker :key="index" v-for="(m, index) in markers" :position="m.position"></gmap-marker>
         </gmap-map>
       </div>
     </div>
@@ -65,6 +66,10 @@
 </template>
 
 <script>
+import states from "./shelterData.json";
+
+var longitude = 0;
+var latitude = 0;
 const keyAPI = "b63e8965c5e1631e57d5c87eaa0b8fd4";
 const AccountSID = "AC36e4053e614b15fe37b4ac51dc065217";
 
@@ -74,6 +79,16 @@ const mn = "+17547154916";
 export default {
   name: "DashBoard",
   props: {
+    usersignedin: String,
+    numberpeople: String,
+    zip: String
+  },
+  computed: {
+    info() {
+      return states.shelters.map((item) => {
+      return item;
+      });
+    },
     user: Object
   },
   data() {
@@ -90,6 +105,10 @@ export default {
 		  { position: {lat: 27.956539, lng: -82.478864}, address: "", name: "Shelter 7"}
 	  ],
       currentPlace: null,
+      user: {
+        selectedShelter: [{}]
+      },
+      currentPlace: null,
       selected: null,
       options: [
         { value: null, text: "Please select an option" },
@@ -105,8 +124,9 @@ export default {
   watch: {
     capacity: function(newVal, oldVal) {
       console.log(newVal);
-      fetch("http://localhost:3000/getCalls", {
-        method:'get',
+      fetch("http://localhost:3000/postCalls", {
+        method:'post',
+        body: this.capacity,
       }).then((res, err) => {
         if (err) {
           console.log("Problem with server")
@@ -127,10 +147,10 @@ export default {
 
   created() {
     this.geolocate();
-  },
-    
-  methods:{
-     addMarker(lat, lon) {
+  },  
+
+  methods: {
+    addMarker(lat, lon) {
       if (this.currentPlace) {
         const marker = {
           lat: this.currentPlace.geometry.location.lat(),
@@ -144,14 +164,18 @@ export default {
 	},
 	
 	markerClickHandler: function(event) {
-		console.log(event.latLng + "")
+    console.log(event.latLng + "")
 		Object.keys(event).push({address: "Shelter 1"})
 		console.log("shelter got clicked: " + event)
 		console.log("shelter got clicked: " + Object.keys(event))
 		console.log("xa    : " + event.xa)
 		console.log("pixel: " + event.pixel)
-		console.log("ua: " + event.ua)
+    console.log("ua: " + event.ua)
 
+    longitude = event.latLng.lng();
+    latitude = event.latLng.lat();
+    console.log(longitude)
+    console.log(latitude)
 	},
 
     decresedToZero(){
@@ -169,8 +193,19 @@ export default {
           lng: position.coords.longitude
         };
         this.markers.push({ position: this.center });
+        this.markers.push({ position: {lat: 30.607481, lng: -86.515763}});
+        this.markers.push({ position: {lat: 30.076522, lng: -81.749945}});
+        this.markers.push({ position: {lat: 28.447261, lng: -81.398536}});
+        this.markers.push({ position: {lat: 25.787836, lng: -80.256457}});
+        this.markers.push({ position: {lat: 27.305359, lng: -80.352243}});
+        this.markers.push({ position: {lat: 30.395532, lng: -84.271367}});
+		this.markers.push({ position: {lat: 27.956539, lng: -82.478864}});
+		this.markers.push();
       });
-    }
+	}, 
+	joinShelter: function() {
+		 
+	}
   }
 };
 </script>
@@ -184,19 +219,33 @@ export default {
   float: left;
   text-align: left;
   overflow: auto;
-  margin: auto;
+  margin-right: 0px;
   width: 35%;
 }
 #right-side {
   flex-grow: 4;
   float: right;
-  margin: auto;
+  margin: 0px;
   text-align: right;
   width: 65%;
 }
 #app {
   background-color: white !important;
 }
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+
+}
+
+.shelterUL li{
+  padding: 25px;
+  font: 100px;
+  list-style-type: none;
+  list-style-position: inherit;
+  border: 1px solid black;
+  margin-top: 1px;
+}
 </style>
-
-

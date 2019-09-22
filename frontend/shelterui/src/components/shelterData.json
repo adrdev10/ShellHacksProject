@@ -1,0 +1,11 @@
+{
+    "shelters": [
+        {"name": "relief1", "longitude": "-86.515763", "latitude": "30.607481", "zip": "33175", "capacity": "100", "phone": "+12563635545"},
+        {"name": "relief2", "longitude": "-81.749945", "latitude": "30.076522", "zip": "33174", "capacity": "80", "phone": "+12563635545"}, 
+        {"name": "relief3", "longitude": "-81.398536", "latitude": "28.447261", "zip": "33174", "capacity": "60", "phone": "+12563635545"},
+        {"name": "relief4", "longitude": "-80.256457", "latitude": "25.787836", "zip": "33176", "capacity": "150", "phone": "+12563635545"},
+        {"name": "relief5", "longitude": "-80.352243", "latitude": "27.305359", "zip": "33176", "capacity": "120", "phone": "+12563635545"},
+        {"name": "relief6", "longitude": "-84.271367", "latitude": "30.395532", "zip": "33176", "capacity": "110", "phone": "+12563635545"},
+        {"name": "relief7", "longitude": "-82.478864", "latitude": "27.956539", "zip": "33176", "capacity": "60", "phone": "+12563635545"}
+    ]
+}
