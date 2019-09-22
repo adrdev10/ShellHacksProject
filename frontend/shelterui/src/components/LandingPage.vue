@@ -57,8 +57,8 @@ export default {
       }).then((res) => {
         if (!res.ok) {
 		  console.log("Could not process post request. Body sent: ", res.bodyUsed, res.status);
-		//   console.log("userData: " + userData);
-          this.$router.push({name:'dashboard', params:{"usersignedin": userData}});
+		  let username = (userData.split('\"'))[3].split('@')[0];
+          this.$router.push({name:'dashboard', params:{"usersignedin": username}});
         }
       })
     },

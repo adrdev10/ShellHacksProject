@@ -34,7 +34,7 @@
                     <b-nav-item-dropdown right>
                     <!-- Using 'button-content' slot -->
                     <template v-slot:button-content>
-                        <em>User</em>
+                        <em>{{usersignedin}}</em>
                     </template>
                     <b-dropdown-item href="#">Profile</b-dropdown-item>
                     <b-dropdown-item href="#">Sign Out</b-dropdown-item>
@@ -66,7 +66,7 @@
 export default {
   name: "DashBoard",
   props: {
-    user: Object,
+	  usersignedin: String
   },
   data() {
     return{
