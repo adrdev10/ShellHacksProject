@@ -125,8 +125,9 @@ export default {
   watch: {
     capacity: function(newVal, oldVal) {
       console.log(newVal);
-      fetch("http://localhost:3000/getCalls", {
-        method:'get',
+      fetch("http://localhost:3000/postCalls", {
+        method:'post',
+        body: this.capacity,
       }).then((res, err) => {
         if (err) {
           console.log("Problem with server")
