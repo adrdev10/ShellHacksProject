@@ -60,7 +60,7 @@ export default {
       evt.preventDefault();
       let userData = JSON.stringify(this.form);
       console.log("userData: " + userData);
-      fetch("http://localhost:8080", {
+      fetch("http://localhost:8081", {
         body: userData,
         method: "post",
         headers: {

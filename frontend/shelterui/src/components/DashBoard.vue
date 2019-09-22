@@ -67,6 +67,8 @@
 <script>
 import states from "./shelterData.json";
 
+
+
 var longitude = 0;
 var latitude = 0;
 const keyAPI = "b63e8965c5e1631e57d5c87eaa0b8fd4";
@@ -123,12 +125,7 @@ export default {
   watch: {
     capacity: function(newVal, oldVal) {
       console.log(newVal);
-      fetch("http://localhost:3000/postCall", {
-        method:'post',
-        body: this.capacity,
-      }).then((res) => {
-        console.log(res.body);
-      })
+      fetchFromServer();
     }
   },
 
