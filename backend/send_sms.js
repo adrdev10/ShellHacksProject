@@ -1,4 +1,4 @@
-const accountSid = 'AC36e4053e614b15fe37b4ac51dc065217';
+const accountSid = 'ACCOUNTID';
 const authToken = 'b63e8965c5e1631e57d5c87eaa0b8fd4';
 const express = require('express')
 // At the top of the file
