@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/xdragon1015/ShellHacksProject#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "npm": "^6.11.3",
     "twilio": "^3.35.0"
   }
